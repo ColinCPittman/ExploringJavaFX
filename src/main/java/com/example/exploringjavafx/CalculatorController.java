@@ -1,5 +1,6 @@
 package com.example.exploringjavafx;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,9 +18,16 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CalculatorController implements Initializable {
+public class CalculatorController implements Initializable, HistoryListener {
+    @Override
+    public void onCalculationUpdate(String calculation) {
+        updateHistory(calculation);
+    }
+
     Calculator calc = new Calculator();
     boolean showingResult = false;
+    @FXML
+    private ListView<String> history;
     @FXML
     private Label calcDisplay;
     @FXML
@@ -60,6 +69,7 @@ public class CalculatorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        calc.setHistoryListener(this);
         int calcDisplayMaxLength = 19;
         calcDisplay.textProperty().addListener(((observable, oldValue, newValue) -> {
             if (newValue.length() >= calcDisplayMaxLength) {
@@ -67,9 +77,12 @@ public class CalculatorController implements Initializable {
             } else {
                 setDisableNumbers(false);
             }
+
         }));
     }
-
+    public void updateHistory(String calculation) {
+        Platform.runLater(() -> history.getItems().add(0,calculation));
+    }
     private void setDisableNumbers(boolean value) {
         one.setDisable(value);
         two.setDisable(value);
@@ -97,6 +110,9 @@ public class CalculatorController implements Initializable {
     }
 
     public void onZeroPress(ActionEvent actionEvent) {
+        if(calcDisplay.getText().contains("Error")) {
+            setDisableOperators(false);
+        }
         if (showingResult) {
             calcDisplay.setText("0");
             showingResult = false;
@@ -112,7 +128,10 @@ public class CalculatorController implements Initializable {
     }
 
     public void onOnePress(ActionEvent actionEvent) {
-        if (showingResult) {
+        if(calcDisplay.getText().contains("Error")) {
+            setDisableOperators(false);
+
+        }        if (showingResult) {
             calcDisplay.setText("1");
             showingResult = false;
             calc.lastOperand = BigDecimal.ZERO;
@@ -129,7 +148,10 @@ public class CalculatorController implements Initializable {
     }
 
     public void onTwoPress(ActionEvent actionEvent) {
-        if (showingResult) {
+        if(calcDisplay.getText().contains("Error")) {
+            setDisableOperators(false);
+
+        }        if (showingResult) {
             calcDisplay.setText("2");
             showingResult = false;
             calc.lastOperand = BigDecimal.ZERO;
@@ -146,7 +168,10 @@ public class CalculatorController implements Initializable {
     }
 
     public void onThreePress(ActionEvent actionEvent) {
-        if (showingResult) {
+        if(calcDisplay.getText().contains("Error")) {
+            setDisableOperators(false);
+
+        }        if (showingResult) {
             calcDisplay.setText("3");
             showingResult = false;
             calc.lastOperand = BigDecimal.ZERO;
@@ -163,7 +188,10 @@ public class CalculatorController implements Initializable {
     }
 
     public void onFourPress(ActionEvent actionEvent) {
-        if (showingResult) {
+        if(calcDisplay.getText().contains("Error")) {
+            setDisableOperators(false);
+
+        }        if (showingResult) {
             calcDisplay.setText("4");
             showingResult = false;
             calc.lastOperand = BigDecimal.ZERO;
@@ -180,7 +208,10 @@ public class CalculatorController implements Initializable {
     }
 
     public void onFivePress(ActionEvent actionEvent) {
-        if (showingResult) {
+        if(calcDisplay.getText().contains("Error")) {
+            setDisableOperators(false);
+
+        }        if (showingResult) {
             calcDisplay.setText("5");
             showingResult = false;
             calc.lastOperand = BigDecimal.ZERO;
@@ -197,7 +228,10 @@ public class CalculatorController implements Initializable {
     }
 
     public void onSixPress(ActionEvent actionEvent) {
-        if (showingResult) {
+        if(calcDisplay.getText().contains("Error")) {
+            setDisableOperators(false);
+
+        }        if (showingResult) {
             calcDisplay.setText("6");
             showingResult = false;
             calc.lastOperand = BigDecimal.ZERO;
@@ -214,7 +248,10 @@ public class CalculatorController implements Initializable {
     }
 
     public void onSevenPress(ActionEvent actionEvent) {
-        if (showingResult) {
+        if(calcDisplay.getText().contains("Error")) {
+            setDisableOperators(false);
+
+        }        if (showingResult) {
             calcDisplay.setText("7");
             showingResult = false;
             calc.lastOperand = BigDecimal.ZERO;
@@ -231,7 +268,10 @@ public class CalculatorController implements Initializable {
     }
 
     public void onEightPress(ActionEvent actionEvent) {
-        if (showingResult) {
+        if(calcDisplay.getText().contains("Error")) {
+            setDisableOperators(false);
+
+        }        if (showingResult) {
             calcDisplay.setText("8");
             showingResult = false;
             calc.lastOperand = BigDecimal.ZERO;
@@ -248,7 +288,10 @@ public class CalculatorController implements Initializable {
     }
 
     public void onNinePress(ActionEvent actionEvent) {
-        if (showingResult) {
+        if(calcDisplay.getText().contains("Error")) {
+            setDisableOperators(false);
+
+        }        if (showingResult) {
             calcDisplay.setText("9");
             showingResult = false;
             calc.lastOperand = BigDecimal.ZERO;
@@ -266,13 +309,17 @@ public class CalculatorController implements Initializable {
 
 
     public void onDotPress(ActionEvent actionEvent) {
+        if(showingResult) {
+           showingResult = false;
+           calcDisplay.setText("0.");
+        }
         if (!calcDisplay.getText().contains(".")) {
             calcDisplay.setText(calcDisplay.getText() + ".");
         }
     }
 
     public void onSignPress(ActionEvent actionEvent) {
-        if (calcDisplay.getText().equals("0")) return;
+        if (calcDisplay.getText().equals("0") || showingResult) return;
         if (calcDisplay.getText().charAt(0) != '-') {
             calcDisplay.setText("-" + calcDisplay.getText());
         } else if (calcDisplay.getText().charAt(0) == '-') {
@@ -281,9 +328,23 @@ public class CalculatorController implements Initializable {
     }
 
     public void onDividePress(ActionEvent actionEvent) {
+        if (!showingResult) {
+            calc.setStoredFirst(calcDisplay.getText()); // Set the storedFirst value to the current display value
+        }
+        calc.setOperator(Calculator.Operator.DIVISION);
+        calc.setStoredFirst(calcDisplay.getText());
+        calcDisplay.setText("0");
+        showingResult = false;
     }
 
     public void onSubtractPress(ActionEvent actionEvent) {
+        if (!showingResult) {
+            calc.setStoredFirst(calcDisplay.getText()); // Set the storedFirst value to the current display value
+        }
+        calc.setOperator(Calculator.Operator.SUBTRACTION);
+        calc.setStoredFirst(calcDisplay.getText());
+        calcDisplay.setText("0");
+        showingResult = false;
     }
 
     public void onMultiplyPress(ActionEvent actionEvent) {
@@ -293,6 +354,7 @@ public class CalculatorController implements Initializable {
         calc.setOperator(Calculator.Operator.MULTIPLICATION);
         calc.setStoredFirst(calcDisplay.getText());
         calcDisplay.setText("0");
+        showingResult = false;
     }
 
     public void onAddPress(ActionEvent actionEvent) {
@@ -300,10 +362,19 @@ public class CalculatorController implements Initializable {
             calc.setStoredFirst(calcDisplay.getText()); // Set the storedFirst value to the current display value
         }
         calc.setOperator(Calculator.Operator.ADDITION);
+        calc.setStoredFirst(calcDisplay.getText());
         calcDisplay.setText("0");
-        showingResult = false; // Reset the showingResult flag
+        showingResult = false;
     }
-
+    public void onExponentialPress(ActionEvent actionEvent) {
+        if (!showingResult) {
+            calc.setStoredFirst(calcDisplay.getText()); // Set the storedFirst value to the current display value
+        }
+        calc.setOperator(Calculator.Operator.EXPONENTIAL);
+        calc.setStoredFirst(calcDisplay.getText());
+        calcDisplay.setText("0");
+        showingResult = false;
+    }
     public void onEqualPress(ActionEvent actionEvent) {
         String result = calc.calculate(calcDisplay.getText());
         calcDisplay.setText(result);
@@ -341,14 +412,8 @@ public class CalculatorController implements Initializable {
         }
     }
 
-    public void errorCheck() {
-        if (calcDisplay.getText().contains("Error")) {
 
-        }
-    }
 
-    public void onExponentialPress(ActionEvent actionEvent) {
-    }
 
     public void onClearPress(ActionEvent actionEvent) {
         calcDisplay.setText("0");

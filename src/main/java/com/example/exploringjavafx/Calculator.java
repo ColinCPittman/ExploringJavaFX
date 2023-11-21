@@ -3,10 +3,12 @@ package com.example.exploringjavafx;
 import java.math.BigDecimal;
 
 public class Calculator {
+    private HistoryListener listener;
+    CalculationList history = new CalculationList();
     public enum Operator {
         ADDITION("+"),
         SUBTRACTION("-"),
-        MULTIPLICATION("*"),
+        MULTIPLICATION("X"),
         DIVISION("/"),
         EXPONENTIAL("^");
 
@@ -20,7 +22,9 @@ public class Calculator {
             return symbol;
         }
     }
-
+    public void setHistoryListener(HistoryListener listener) {
+        this.listener = listener;
+    }
     public Calculator() {
         this.storedFirst = BigDecimal.ZERO;
         this.storedSecond = BigDecimal.ZERO;
@@ -77,8 +81,13 @@ public class Calculator {
                     result = storedFirst.pow(storedSecond.intValue());
                 }
             }
+            BigDecimal first = storedFirst;
             storedFirst = result;
-            return result.toString();
+            history.addCalculation(first,storedSecond,operator,result.stripTrailingZeros().toPlainString());
+            if(listener != null) {
+                listener.onCalculationUpdate(history.getLastCalculation());
+            }
+            return result.stripTrailingZeros().toPlainString();
         } catch (ArithmeticException e) {
             return "Error: Arithmetic Exception";
         }
