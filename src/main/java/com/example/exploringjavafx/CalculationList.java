@@ -47,9 +47,9 @@ public class CalculationList {
          } else {
              Node current = head;
              while (current.nextNode != null) {
-                 current = current.nextNode; // Advance to the next node
+                 current = current.nextNode;
              }
-             // Now current is the last node
+
              current.nextNode = new Node(result);
              current.nextNode.previousNode = current;
          }

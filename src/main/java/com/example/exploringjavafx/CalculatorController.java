@@ -329,7 +329,7 @@ public class CalculatorController implements Initializable, HistoryListener {
 
     public void onDividePress(ActionEvent actionEvent) {
         if (!showingResult) {
-            calc.setStoredFirst(calcDisplay.getText()); // Set the storedFirst value to the current display value
+            calc.setStoredFirst(calcDisplay.getText());
         }
         calc.setOperator(Calculator.Operator.DIVISION);
         calc.setStoredFirst(calcDisplay.getText());
@@ -339,7 +339,7 @@ public class CalculatorController implements Initializable, HistoryListener {
 
     public void onSubtractPress(ActionEvent actionEvent) {
         if (!showingResult) {
-            calc.setStoredFirst(calcDisplay.getText()); // Set the storedFirst value to the current display value
+            calc.setStoredFirst(calcDisplay.getText());
         }
         calc.setOperator(Calculator.Operator.SUBTRACTION);
         calc.setStoredFirst(calcDisplay.getText());
@@ -349,7 +349,7 @@ public class CalculatorController implements Initializable, HistoryListener {
 
     public void onMultiplyPress(ActionEvent actionEvent) {
         if (!showingResult) {
-            calc.setStoredFirst(calcDisplay.getText()); // Set the storedFirst value to the current display value
+            calc.setStoredFirst(calcDisplay.getText());
         }
         calc.setOperator(Calculator.Operator.MULTIPLICATION);
         calc.setStoredFirst(calcDisplay.getText());
@@ -359,7 +359,7 @@ public class CalculatorController implements Initializable, HistoryListener {
 
     public void onAddPress(ActionEvent actionEvent) {
         if (!showingResult) {
-            calc.setStoredFirst(calcDisplay.getText()); // Set the storedFirst value to the current display value
+            calc.setStoredFirst(calcDisplay.getText());
         }
         calc.setOperator(Calculator.Operator.ADDITION);
         calc.setStoredFirst(calcDisplay.getText());
@@ -368,7 +368,7 @@ public class CalculatorController implements Initializable, HistoryListener {
     }
     public void onExponentialPress(ActionEvent actionEvent) {
         if (!showingResult) {
-            calc.setStoredFirst(calcDisplay.getText()); // Set the storedFirst value to the current display value
+            calc.setStoredFirst(calcDisplay.getText());
         }
         calc.setOperator(Calculator.Operator.EXPONENTIAL);
         calc.setStoredFirst(calcDisplay.getText());

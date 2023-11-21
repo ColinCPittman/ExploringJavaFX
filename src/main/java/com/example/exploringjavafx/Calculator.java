@@ -48,14 +48,11 @@ public class Calculator {
     public String calculate(String number) {
         if (operator != null) {
             if (lastOperand.compareTo(BigDecimal.ZERO) != 0) {
-                // If lastOperand is set (not zero), use it for a repeated operation
                 storedSecond = lastOperand;
             } else if (number != null) {
-                // If a new number is entered, use it and update lastOperand
                 storedSecond = new BigDecimal(number);
                 lastOperand = storedSecond;
             }
-            // If neither condition is true, it implies an error or uninitialized state
         }
         BigDecimal result = BigDecimal.ZERO;
 
