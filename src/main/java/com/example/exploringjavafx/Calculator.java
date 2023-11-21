@@ -1,13 +1,14 @@
 package com.example.exploringjavafx;
 
-import static java.lang.Double.NaN;
+import java.math.BigDecimal;
 
 public class Calculator {
     public enum Operator {
         ADDITION("+"),
         SUBTRACTION("-"),
         MULTIPLICATION("*"),
-        DIVISION("/");
+        DIVISION("/"),
+        EXPONENTIAL("^");
 
         private final String symbol;
 
@@ -19,16 +20,69 @@ public class Calculator {
             return symbol;
         }
     }
-    private Operator operator;
-    public void setOperator(Operator operator){
-    this.operator = operator;
+
+    public Calculator() {
+        this.storedFirst = BigDecimal.ZERO;
+        this.storedSecond = BigDecimal.ZERO;
+        this.lastOperand = BigDecimal.ZERO;
     }
 
-    public Double add(String num) {
-        try{
-        double number = Double.parseDouble(num);
-        }catch(NumberFormatException e) {
-            return NaN;
+    BigDecimal storedFirst;
+    BigDecimal storedSecond;
+    BigDecimal lastOperand;
+    private Operator operator;
+    public void setStoredFirst(String number) {
+        if(!number.contains("Error")) {
+            storedFirst = new BigDecimal(number);
+        } else {
+            storedFirst = BigDecimal.ZERO;
         }
+    }
+    public void setOperator(Operator operator) {
+        this.operator = operator;
+    }
+    public String calculate(String number) {
+        if (operator != null) {
+            if (lastOperand.compareTo(BigDecimal.ZERO) != 0) {
+                // If lastOperand is set (not zero), use it for a repeated operation
+                storedSecond = lastOperand;
+            } else if (number != null) {
+                // If a new number is entered, use it and update lastOperand
+                storedSecond = new BigDecimal(number);
+                lastOperand = storedSecond;
+            }
+            // If neither condition is true, it implies an error or uninitialized state
+        }
+        BigDecimal result = BigDecimal.ZERO;
+
+        try {
+            switch (operator) {
+                case ADDITION -> {
+                    result = storedFirst.add(storedSecond);
+                }
+                case SUBTRACTION -> {
+                    result = storedFirst.subtract(storedSecond);
+                }
+                case MULTIPLICATION -> {
+                    result = storedFirst.multiply(storedSecond);
+                }
+                case DIVISION -> {
+                    if (storedSecond.compareTo(BigDecimal.ZERO) != 0) {
+                        result = storedFirst.divide(storedSecond, 10, BigDecimal.ROUND_HALF_UP);
+                    } else {
+                        return "Error: Div by zero";
+                    }
+                }
+                case EXPONENTIAL -> {
+                    result = storedFirst.pow(storedSecond.intValue());
+                }
+            }
+            storedFirst = result;
+            return result.toString();
+        } catch (ArithmeticException e) {
+            return "Error: Arithmetic Exception";
+        }
+    }
+
 
 }

@@ -26,7 +26,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="zero" mnemonicParsing="false" onAction="#onZeroPress" prefHeight="50.0" prefWidth="135.0" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button fx:id="zero" mnemonicParsing="false" onAction="#onZeroPress" prefHeight="50.0" prefWidth="135.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -50,7 +50,7 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onSubtractPress" prefHeight="50.0" prefWidth="135.0" text="-" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button fx:id="subtract" mnemonicParsing="false" onAction="#onSubtractPress" prefHeight="50.0" prefWidth="135.0" text="-" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -78,32 +78,32 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onDotPress" prefHeight="50.0" prefWidth="135.0" text="." textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#onDotPress" prefHeight="50.0" prefWidth="135.0" text="." textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onSignPress" prefHeight="50.0" prefWidth="135.0" text="+/-" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button fx:id="sign" mnemonicParsing="false" onAction="#onSignPress" prefHeight="50.0" prefWidth="135.0" text="+/-" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onDividePress" prefHeight="50.0" prefWidth="135.0" text="/" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="divide" mnemonicParsing="false" onAction="#onDividePress" prefHeight="50.0" prefWidth="135.0" text="/" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onMultiplyPress" prefHeight="50.0" prefWidth="135.0" text="*" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button fx:id="multiply" mnemonicParsing="false" onAction="#onMultiplyPress" prefHeight="50.0" prefWidth="135.0" text="*" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onAddPress" prefHeight="50.0" prefWidth="135.0" text="+" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button fx:id="add" mnemonicParsing="false" onAction="#onAddPress" prefHeight="50.0" prefWidth="135.0" text="+" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onEqualPress" prefHeight="50.0" prefWidth="135.0" text="=" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button fx:id="equal" mnemonicParsing="false" onAction="#onEqualPress" prefHeight="50.0" prefWidth="135.0" text="=" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
@@ -118,7 +118,7 @@
                   <Font name="System Bold" size="23.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onExponentialPress" prefHeight="50.0" prefWidth="135.0" text="^" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="exponential" mnemonicParsing="false" onAction="#onExponentialPress" prefHeight="50.0" prefWidth="135.0" text="^" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
