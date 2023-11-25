@@ -32,7 +32,6 @@ public class TextEditorController {
             e.printStackTrace();
         }
     }
-
     @FXML
     public void onOpenFilePress(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();

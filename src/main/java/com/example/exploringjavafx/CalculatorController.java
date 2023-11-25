@@ -346,7 +346,6 @@ public class CalculatorController implements Initializable, HistoryListener {
         calcDisplay.setText("0");
         showingResult = false;
     }
-
     public void onMultiplyPress(ActionEvent actionEvent) {
         if (!showingResult) {
             calc.setStoredFirst(calcDisplay.getText());

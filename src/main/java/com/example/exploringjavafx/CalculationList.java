@@ -18,7 +18,6 @@ public class CalculationList {
         public String getCalculation() {
             return calculation;
         }
-
         public Node getNextNode() {
             return nextNode;
         }

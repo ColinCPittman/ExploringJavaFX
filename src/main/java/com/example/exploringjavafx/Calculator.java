@@ -17,7 +17,6 @@ public class Calculator {
         Operator(String symbol) {
             this.symbol = symbol;
         }
-
         public String getSymbol() {
             return symbol;
         }
