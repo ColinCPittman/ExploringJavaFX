@@ -90,6 +90,7 @@ public class CalculatorController implements Initializable, HistoryListener {
         four.setDisable(value);
         five.setDisable(value);
         six.setDisable(value);
+        seven.setDisable(value);
         eight.setDisable(value);
         nine.setDisable(value);
         zero.setDisable(value);
