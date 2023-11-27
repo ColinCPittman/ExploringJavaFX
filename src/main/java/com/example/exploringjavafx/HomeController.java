@@ -41,4 +41,17 @@ public class HomeController {
             e.printStackTrace();
         }
     }
+    @FXML
+    protected void onMonsterMashPress(ActionEvent event) {
+        try{
+            Parent monsterSceneRoot = FXMLLoader.load(getClass().getResource("Calculator.fxml"));
+            Scene monsterMash = new Scene(monsterSceneRoot);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(monsterMash);
+            stage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
 }

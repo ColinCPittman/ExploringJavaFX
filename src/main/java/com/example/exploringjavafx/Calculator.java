@@ -2,6 +2,12 @@ package com.example.exploringjavafx;
 
 import java.math.BigDecimal;
 
+//
+//INVESTIGATE 9 * 5 = / 2 NOT RETURNING THE RESULT OF 45/2
+//
+//ALSO IMPLEMENT KEYBOARD SUPPORT
+//
+
 public class Calculator {
     private HistoryListener listener;
     CalculationList history = new CalculationList();
